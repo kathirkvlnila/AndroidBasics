@@ -1,5 +1,6 @@
 package com.its.samplelearning;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                onBackPressed();
             }
         });
 
@@ -60,14 +62,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
         if (item.getItemId() == R.id.logout) {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
+
+            showDialog(new ExitDialogListener() {
+                @Override
+                public void onCancelClicked(DialogInterface dialog) {
+                    dialog.dismiss();
+                }
+
+                @Override
+                public void onProceedClicked() {
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+            });
             return true;
         }
 
         return false;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        showDialog(new ExitDialogListener() {
+            @Override
+            public void onCancelClicked(DialogInterface dialog) {
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onProceedClicked() {
+                MainActivity.this.finish();
+            }
+        });
+    }
+
+    private void showDialog(ExitDialogListener exitDialogListener) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("Info");
+        alertDialog.setMessage("Are you sure you want to exit?");
+        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                exitDialogListener.onProceedClicked();
+            }
+        });
+        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                exitDialogListener.onCancelClicked(dialog);
+            }
+        });
+        alertDialog.create();
+        alertDialog.show();
     }
 
     /**
