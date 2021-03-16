@@ -5,4 +5,7 @@
     <string name="lbl_password">Password</string>
     <string name="lbl_login">Login</string>
     <string name="lbl_logout">logout</string>
+    <string name="title_activity_splashscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
