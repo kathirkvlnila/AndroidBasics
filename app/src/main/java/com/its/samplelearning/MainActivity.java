@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Profile");
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         getSupportActionBar().setHomeButtonEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onBackPressed() {
-        showDialog(new ExitDialogListener() {
+       exitdialog(new ExitDialogListener() {
             @Override
             public void onCancelClicked(DialogInterface dialog) {
                 dialog.dismiss();
@@ -99,10 +99,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+
     private void showDialog(ExitDialogListener exitDialogListener) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setTitle("Info");
-        alertDialog.setMessage("Are you sure you want to exit?");
+        alertDialog.setMessage("Are you sure you want to Logout?");
         alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -118,6 +119,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alertDialog.create();
         alertDialog.show();
     }
+
+    private void exitdialog (ExitDialogListener exitDialogListener) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("Info");
+        alertDialog.setMessage("Are you sure you want to EXIT?");
+        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                exitDialogListener.onProceedClicked();
+            }
+        });
+        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                exitDialogListener.onCancelClicked(dialog);
+            }
+        });
+        alertDialog.create();
+        alertDialog.show();
+    }
+
+
+
+
+
 
     /**
      * init view to call onCreate
