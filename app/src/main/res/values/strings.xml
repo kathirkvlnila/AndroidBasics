@@ -8,4 +8,14 @@
     <string name="title_activity_splashscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="lbl_sign_up">Sign up</string>
+    <string name="lbl_registration">Registration</string>
+    <string name="lbl_terms_and_conditions">Terms and conditions</string>
+    <string name="lbl_retype_password">Retype Password</string>
+    <string name="lbl_set_password">Set Password</string>
+    <string name="lbl_about_me">About Me</string>
+    <string name="lbl_location">Location</string>
+    <string name="lbl_designation">Designation</string>
+    <string name="lbl_last_name">Last Name</string>
+    <string name="lbl_first_name">First Name</string>
 </resources>

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F8F5F5">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/sample_toolbar_lyt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.2" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/arizonia"
+                    android:text="@string/lbl_registration"
+                    android:textAppearance="?attr/textAppearanceHeadline4"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <EditText
+                    android:id="@+id/edt_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/default_edit_bg"
+                    android:hint="@string/lbl_first_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingStart="8dp"
+                    android:paddingTop="12dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline2"
+                    tools:ignore="Autofill" />
+
+                <EditText
+                    android:id="@+id/edit_lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edt_username"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/default_edit_bg"
+                    android:hint="@string/lbl_last_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingStart="8dp"
+                    android:paddingTop="12dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="12dp"
+                    app:layout_constraintEnd_toEndOf="@+id/edt_username"
+                    app:layout_constraintStart_toStartOf="@+id/edt_username"
+                    app:layout_constraintTop_toBottomOf="@+id/edt_username"
+                    tools:ignore="Autofill" />
+
+                <EditText
+                    android:id="@+id/edt_designation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edt_username"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/default_edit_bg"
+                    android:hint="@string/lbl_designation"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingStart="8dp"
+                    android:paddingTop="12dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="12dp"
+                    app:layout_constraintEnd_toEndOf="@+id/edt_username"
+                    app:layout_constraintStart_toStartOf="@+id/edt_username"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_lastname"
+                    tools:ignore="Autofill" />
+
+                <EditText
+                    android:id="@+id/edit_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/default_edit_bg"
+                    android:hint="@string/lbl_location"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingStart="8dp"
+                    android:paddingTop="12dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="12dp"
+                    app:layout_constraintEnd_toEndOf="@+id/edt_designation"
+                    app:layout_constraintStart_toStartOf="@+id/edt_designation"
+                    app:layout_constraintTop_toBottomOf="@+id/edt_designation"
+                    tools:ignore="Autofill" />
+
+                <EditText
+                    android:id="@+id/edit_about_me"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/default_edit_bg"
+                    android:gravity="start"
+                    android:hint="@string/lbl_about_me"
+                    android:inputType="textMultiLine"
+                    android:maxLines="5"
+                    android:minHeight="100dp"
+                    android:paddingStart="8dp"
+                    android:paddingTop="12dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="12dp"
+                    app:layout_constraintEnd_toEndOf="@+id/edt_designation"
+                    app:layout_constraintStart_toStartOf="@+id/edt_designation"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_location"
+                    tools:ignore="Autofill" />
+
+                <EditText
+                    android:id="@+id/edit_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/default_edit_bg"
+                    android:hint="@string/lbl_set_password"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="textWebPassword"
+                    android:paddingStart="8dp"
+                    android:paddingTop="12dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="12dp"
+                    app:layout_constraintEnd_toEndOf="@+id/edt_designation"
+                    app:layout_constraintStart_toStartOf="@+id/edt_designation"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_about_me" />
+
+                <EditText
+                    android:id="@+id/edit_retype_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/default_edit_bg"
+                    android:hint="@string/lbl_retype_password"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="textWebPassword"
+                    android:paddingStart="8dp"
+                    android:paddingTop="12dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="12dp"
+                    app:layout_constraintEnd_toEndOf="@+id/edt_designation"
+                    app:layout_constraintStart_toStartOf="@+id/edt_designation"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_password" />
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/lbl_terms_and_conditions"
+                    app:layout_constraintStart_toStartOf="@+id/edit_retype_password"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_retype_password" />
+
+
+                <Button
+                    android:id="@+id/btn_signup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/default_button_bg"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/lbl_sign_up"
+                    app:layout_constraintEnd_toEndOf="@+id/edit_retype_password"
+                    app:layout_constraintStart_toStartOf="@+id/edit_retype_password"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

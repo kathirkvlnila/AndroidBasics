@@ -22,7 +22,7 @@ public class SplashscreenActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent;
-                if (!sharedPreferences.getString(Utility.SHARED_PREF_USERNAME, "").equals("")) {
+                if (sharedPreferences.getBoolean(Utility.SHARED_PREF_ALREADY_LOGGED_IN, false)) {
                     intent = new Intent(SplashscreenActivity.this, MainActivity.class);
                 } else {
                     intent = new Intent(SplashscreenActivity.this, LoginActivity.class);

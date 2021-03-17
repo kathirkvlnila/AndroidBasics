@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -73,6 +72,15 @@
             android:layout_below="@id/edt_password"
             android:layout_margin="16dp"
             android:text="@string/lbl_login" />
+
+
+        <Button
+            android:id="@+id/btn_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_login"
+            android:layout_margin="16dp"
+            android:text="@string/lbl_sign_up" />
     </RelativeLayout>
 
 </RelativeLayout>

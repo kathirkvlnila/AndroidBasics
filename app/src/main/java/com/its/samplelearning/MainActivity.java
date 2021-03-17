@@ -2,6 +2,7 @@ package com.its.samplelearning;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,12 +21,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private TextView mTxtName, mTxtDesignation, mTxtLocation, mTxtDescription;
     private ImageButton mBtnFb, mBtnTw, mBtnIn, mBtnAdd;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
+        sharedPreferences = getApplicationContext().getSharedPreferences(Utility.SHARED_PREF, MODE_PRIVATE);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Profile");
         setSupportActionBar(toolbar);
@@ -62,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
         if (item.getItemId() == R.id.logout) {
-
-            showDialog(new ExitDialogListener() {
+            String msg = "Are you sure you want to Logout?";
+            showDialog(msg, new ExitDialogListener() {
                 @Override
                 public void onCancelClicked(DialogInterface dialog) {
                     dialog.dismiss();
@@ -71,6 +74,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 @Override
                 public void onProceedClicked() {
+                    editor = sharedPreferences.edit();
+                    editor.putBoolean(Utility.SHARED_PREF_ALREADY_LOGGED_IN, false);
+                    editor.apply();
+                    editor.commit();
                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -86,7 +93,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onBackPressed() {
-       exitdialog(new ExitDialogListener() {
+        String msg = "Are you sure you want to EXIT?";
+        showDialog(msg, new ExitDialogListener() {
             @Override
             public void onCancelClicked(DialogInterface dialog) {
                 dialog.dismiss();
@@ -100,10 +108,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private void showDialog(ExitDialogListener exitDialogListener) {
+    private void showDialog(String message, ExitDialogListener exitDialogListener) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setTitle("Info");
-        alertDialog.setMessage("Are you sure you want to Logout?");
+        alertDialog.setMessage(message);
         alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -119,31 +127,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alertDialog.create();
         alertDialog.show();
     }
-
-    private void exitdialog (ExitDialogListener exitDialogListener) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setTitle("Info");
-        alertDialog.setMessage("Are you sure you want to EXIT?");
-        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                exitDialogListener.onProceedClicked();
-            }
-        });
-        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                exitDialogListener.onCancelClicked(dialog);
-            }
-        });
-        alertDialog.create();
-        alertDialog.show();
-    }
-
-
-
-
-
 
     /**
      * init view to call onCreate

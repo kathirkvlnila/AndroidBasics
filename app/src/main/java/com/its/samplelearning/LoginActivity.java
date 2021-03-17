@@ -14,7 +14,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText mEdtUsername;
     private EditText mEdtPassword;
-    private Button mBtnLogin;
+    private Button mBtnLogin, mBtnSignUp;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
@@ -26,24 +26,44 @@ public class LoginActivity extends AppCompatActivity {
         mEdtUsername = findViewById(R.id.edt_username);
         mEdtPassword = findViewById(R.id.edt_password);
         mBtnLogin = findViewById(R.id.btn_login);
+        mBtnSignUp = findViewById(R.id.btn_signup);
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean isValid = validate();
                 if (isValid) {
-                    editor = sharedPreferences.edit();
-                    editor.putString(Utility.SHARED_PREF_USERNAME, mEdtUsername.getText().toString());
-                    editor.putString(Utility.SHARED_PREF_PASSWORD, mEdtPassword.getText().toString());
-                    editor.apply();
-                    editor.commit();
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    String savedUserName = sharedPreferences.getString(Utility.SHARED_PREF_USERNAME, "");
+                    String savedPassword = sharedPreferences.getString(Utility.SHARED_PREF_PASSWORD, "");
+                    if (!savedUserName.equals("") && !savedPassword.equals("")) {
+                        if (savedUserName.equals(mEdtUsername.getText().toString()) && savedPassword.equals(mEdtPassword.getText().toString())) {
+                            editor = sharedPreferences.edit();
+                            editor.putString(Utility.SHARED_PREF_USERNAME, mEdtUsername.getText().toString());
+                            editor.putString(Utility.SHARED_PREF_PASSWORD, mEdtPassword.getText().toString());
+                            editor.putBoolean(Utility.SHARED_PREF_ALREADY_LOGGED_IN, true);
+                            editor.apply();
+                            editor.commit();
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Invalid Username!", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(LoginActivity.this, "User do not have account. Please Sign up!", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+        mBtnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private boolean validate() {
