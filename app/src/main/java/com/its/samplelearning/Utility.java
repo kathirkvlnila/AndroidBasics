@@ -16,6 +16,8 @@ public class Utility {
     public final static String SHARED_PREF_ABOUT_ME = "aboutMe";
     public final static String SHARED_PREF_ALREADY_LOGGED_IN = "isLoggedIn";
 
+    public final static String DEFAULT_DATE_FORMAT = "dd/MM/yyyy";
+
     public static void setToolbar(AppCompatActivity context, String title) {
         Toolbar toolbar = context.findViewById(R.id.toolbar);
         toolbar.setTitle(title);
