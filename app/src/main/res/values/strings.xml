@@ -19,4 +19,7 @@
     <string name="lbl_last_name">Last Name</string>
     <string name="lbl_first_name">First Name</string>
     <string name="lbl_date_of_birth">Date of Birth</string>
+    <string name="lbl_retry">Retry</string>
+    <string name="lbl_server_error">Server Error. Please try later</string>
+    <string name="no_connection_msg">Please check your internet connectivity</string>
 </resources>

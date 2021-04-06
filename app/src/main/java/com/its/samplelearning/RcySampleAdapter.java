@@ -12,9 +12,9 @@ import java.util.ArrayList;
 
 public class RcySampleAdapter extends RecyclerView.Adapter<RcySampleAdapter.MyViewHolder> {
 
-    private ArrayList<StudentModel> data = new ArrayList<>();
+    private ArrayList<UserPosts> data = new ArrayList<>();
 
-    RcySampleAdapter(ArrayList<StudentModel> tempData) {
+    RcySampleAdapter(ArrayList<UserPosts> tempData) {
         this.data = tempData;
     }
 
@@ -31,10 +31,10 @@ public class RcySampleAdapter extends RecyclerView.Adapter<RcySampleAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        StudentModel myData = data.get(position);
+        UserPosts myData = data.get(position);
 
-        holder.mTxtView.setText(myData.getStuId());
-        holder.mTxtView2.setText(myData.getStuName());
+        holder.mTxtView.setText(myData.getId());
+        holder.mTxtView2.setText(myData.getTitle());
     }
 
     @Override

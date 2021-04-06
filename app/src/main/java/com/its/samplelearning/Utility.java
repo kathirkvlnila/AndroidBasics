@@ -1,5 +1,7 @@
 package com.its.samplelearning;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +20,13 @@ public class Utility {
 
     public final static String DEFAULT_DATE_FORMAT = "dd/MM/yyyy";
 
+
+    //API Urls
+
+    public final static String URL_BASE = "https://jsonplaceholder.typicode.com/";
+    public final static String URL_GET_POSTS = URL_BASE + "posts";
+    public final static String URL_GET_COMMENTS = URL_BASE + "comments";
+
     public static void setToolbar(AppCompatActivity context, String title) {
         Toolbar toolbar = context.findViewById(R.id.toolbar);
         toolbar.setTitle(title);
@@ -30,5 +39,11 @@ public class Utility {
                 context.onBackPressed();
             }
         });
+    }
+
+    public static boolean isNetworkConnected(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 }
